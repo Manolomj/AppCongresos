@@ -4,11 +4,9 @@
 
  <section id="hero" class="d-flex flex-column justify-content-center align-items-center">
     <div class="hero-container">
-      
       <div class="container">
         <div class="d-flex justify-content-center h-100">
             <div class="card" style="border-color: #9BE4FF">
-            
             <div class="card-header" style="background: #040b14;">
               <h3 style="color: #149ddd;">{{ __('Sign In') }}</h3>
             </div>

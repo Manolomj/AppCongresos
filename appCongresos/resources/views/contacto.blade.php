@@ -71,12 +71,13 @@
             
             <div class="col-lg-7 mt-5 mt-lg-0 d-flex align-items-stretch" >
 
-                <form method="POST" action="{{ url('/contacto') }}">
-                    @csrf
-                    <input type="text" name="subject">
-                    <input type="text" name="message">
-                    <input type="submit">
-                </form>
+                <!--Formulario Carmelo-->
+                <!--<form method="POST" action="{{ url('/contacto') }}">-->
+                <!--    @csrf-->
+                <!--    <input type="text" name="subject">-->
+                <!--    <input type="text" name="message">-->
+                <!--    <input type="submit">-->
+                <!--</form>-->
                 
                 <form method="POST" action="{{ url('/contacto') }}" role="form" class="php-email-form" >
                   @csrf
@@ -106,7 +107,8 @@
                     
                     @auth 
                         @if(Auth::user()->email_verified_at == null)
-                            <div class="text-center"><a href="{{ url('login') }}" class="submit">Inicia sesion</button></a>
+                            ¡Atención! Tu cuenta no está verificada, ¿Quieres que te enviemos un email para su activación? <br><br>
+                            <div class="text-center"><a href="{{ action('ContactoController@verificacionContacto') }}" class="submit">Email de activación</button></a>
                         @endif
                     @endauth
                     

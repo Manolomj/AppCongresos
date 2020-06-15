@@ -10,10 +10,6 @@ use Illuminate\Auth\Events\Verified;
 use Illuminate\Http\Request;
 
 
-
-
-
-
 class VerificationController extends Controller
 {
     /*
@@ -34,6 +30,7 @@ class VerificationController extends Controller
      *
      * @var string
      */
+    // protected $redirectTo = RouteServiceProvider::HOME;
     protected $redirectTo = '/';
 
     /**
@@ -47,7 +44,8 @@ class VerificationController extends Controller
         $this->middleware('signed')->only('verify');
         $this->middleware('throttle:6,1')->only('verify', 'resend');
     }
-
+    
+    
 
     public function verify(Request $request) {
         $user = \App\User::find($request->route('id'));
@@ -58,4 +56,5 @@ class VerificationController extends Controller
         }
         return redirect($this->redirectPath());
     }
+    
 }

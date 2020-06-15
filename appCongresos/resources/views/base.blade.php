@@ -24,9 +24,13 @@
   <link href="assets/vendor/venobox/venobox.css" rel="stylesheet">
   <link href="assets/vendor/owl.carousel/assets/owl.carousel.min.css" rel="stylesheet">
   <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  
 
   <!-- Template Main CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">
+  
+  @yield('head-links')
+
 
   <!-- =======================================================
   * Template Name: iPortfolio - v1.0.0
@@ -65,7 +69,9 @@
           {{--
           <li class="{{ setActive('home') }}"><a href="{{ url('/') }}"><i class="bx bx-home"></i> <span>Home</span></a></li>
           --}}
+          
           <li class="{{ request()->routeIs('home') ? 'active' : '' }}"><a href="{{ url('/') }}"><i class="bx bx-home"></i> <span>Home</span></a></li>
+          
           @guest
             <li class="{{ request()->routeIs('about') ? 'active' : '' }}"><a href="{{ url('/about') }}"><i class="bx bx-user-pin"></i> <span>About</span></a></li>
           @endguest
@@ -76,15 +82,15 @@
           
           
           @auth
-          @if(Auth::user()->type == 'suscriptor' && Auth::user()->email_verified_at != null)
-            <li class="{{ request()->routeIs('pagos') ? 'active' : '' }}"><a href="{{ url('/pagos') }}"><i class="bx bx-book"></i> <span>Pago</span></a></li>
+          @if(Auth::user()->type == 'suscriptor' && Auth::user()->email_verified_at != null && Auth::user()->pago == 0)
+            <li class="{{ request()->routeIs('pagos') ? 'active' : '' }}"><a href="{{ url('/pago') }}"><i class="bx bx-book"></i> <span>Pago</span></a></li>
           @endif
           @endauth
           
           
           @auth
           @if(Auth::user()->type == 'ponente' && Auth::user()->email_verified_at != null)
-            <li class="{{ request()->routeIs('ponencia.create') ? 'active' : '' }}"><a href="{{ url('/ponencia/create') }}"><i class="bx bx-book-add"></i> <span>Crear ponencia</span></a></li>
+            <li class="{{ request()->routeIs('ponencia.create') ? 'active' : '' }}"><a href="{{ route('ponencia.create') }}"><i class="bx bx-book-add"></i> <span>Crear ponencia</span></a></li>
           @endif
           @endauth
           
@@ -105,7 +111,7 @@
           @endauth
           
           
-          <li class="{{ request()->routeIs('contacto') ? 'active' : '' }}"><a href="{{ url('/contacto') }}"><i class="bx bx-home"></i> <span>Contacto</span></a></li>
+          <li class="{{ request()->routeIs('contacto') ? 'active' : '' }}"><a href="{{ url('/contacto') }}"><i class="bx bx-phone"></i> <span>Contacto</span></a></li>
           
           
           
@@ -194,7 +200,8 @@
 
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
-
+  <script src="assets/js/main-form.js"></script>
+  
 </body>
 
 </html>

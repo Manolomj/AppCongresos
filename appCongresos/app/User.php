@@ -16,7 +16,7 @@ class User extends Authenticatable implements MustVerifyEmail
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'type'
+        'name', 'email', 'password', 'type', 'pago'
     ];
 
     /**
@@ -36,4 +36,29 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+    
+    
+    
+    public function setPasswordAttribute($password)
+    {
+        $this->attributes['password'] = $password; //quitar hash para poder loguear 
+    }
+
+    
+    
+    
+    // Un usuario accede a varias ponencias
+    public function Ponencias() {
+        return $this->hasMany('App\Ponencia');
+    }
+    
+    // Un usuario tiene un solo pago
+    // public function Pagos() {
+        
+    //     return $this->belongsTo('App\PagoCongreso');
+    // }
+    
+    
+    
+    
 }

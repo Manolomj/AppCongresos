@@ -975,3 +975,16 @@ section {
     border:0!important;
     transition:0.3s;
 }
+
+
+
+.page-item.active .page-link {
+  background-color:#149ddd !important;
+}
+
+a.page-link {
+    color: #007bff ;
+}
+
+
+

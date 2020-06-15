@@ -21,6 +21,8 @@ class CreateUsersTable extends Migration
             $table->string('password');
             
             $table->enum('type',['admin','comite', 'ponente', 'suscriptor'])->default('suscriptor');
+            $table->boolean('pago')->nullable();
+            
             $table->rememberToken();
             $table->timestamps();
         });

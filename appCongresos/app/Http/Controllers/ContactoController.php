@@ -62,6 +62,26 @@ class ContactoController extends Controller
         
     }
 
+
+    public function verificacionContacto(Request $request){
+        
+        $user = \Auth::user();
+        
+        if($user === null)
+        {
+            $request->session()->flash('op', 'usuarioSinLoguear');
+        }
+        else
+        {
+            $user->sendEmailVerificationNotification();
+            $request->session()->flash('op', 'correoVerificiacion');
+        }
+        
+        
+        return redirect('/contacto');
+        
+    }
+
 }
 
 

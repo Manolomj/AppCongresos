@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePonenciasTable extends Migration
+class CreatePonenciaTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreatePonenciasTable extends Migration
      */
     public function up()
     {
-        Schema::create('ponencias', function (Blueprint $table) {
+        Schema::create('ponencia', function (Blueprint $table) {
             
             $table->engine = 'InnoDB';
             $table->charset = 'utf8';
@@ -24,7 +24,6 @@ class CreatePonenciasTable extends Migration
             $table->string('titulo', 100);
             $table->string('video', 200);
             $table->date('fecha');
-
 
             $table->timestamps();
             $table->softDeletes();
@@ -41,6 +40,6 @@ class CreatePonenciasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('ponencias');
+        Schema::dropIfExists('ponencia');
     }
 }

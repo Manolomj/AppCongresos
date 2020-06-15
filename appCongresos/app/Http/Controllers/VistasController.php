@@ -16,7 +16,6 @@ class VistasController extends Controller
         $this->middleware('users')->only('pagos');
         $this->middleware('veryfied')->only('pagos');
         
-        $this->middleware('comite')->only('createPonente');
     }
     
     
@@ -43,11 +42,6 @@ class VistasController extends Controller
     public function createPonencia()
     {
         return view('ponenciasCreate');
-    }
-    
-    public function createPonente()
-    {
-        return view('ponenteCreate');
     }
     
     public function prueba()

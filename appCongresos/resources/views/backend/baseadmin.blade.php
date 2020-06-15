@@ -3,6 +3,9 @@
 
 <head>
 	<base href="{{ url('backend/assets') }}/">
+	{{-- 
+	<base href="{{ url() }}/"> 
+	--}}
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -17,8 +20,17 @@
 
   <!-- Custom styles for this template-->
   <link href="css/sb-admin-2.css" rel="stylesheet">
-  
   <link href="img/favicon.png" rel="icon">
+  
+  <style type="text/css">
+    li .page-item:marker{
+      display:none !important;
+    }
+  </style>
+  <!--CSS datatables-->
+  <!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.css" type="text/css" />-->
+  <!--<link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap4.min.css" type="text/css" />-->
+  <!--<link rel="stylesheet" href="" type="text/css" />-->
 
 </head>
 
@@ -55,16 +67,27 @@
 
       <!-- Heading -->
       <div class="sidebar-heading">
-        Usuarios
+        Panel de administración
       </div>
 
-      <!-- Nav Item - Pages Collapse Menu -->
-      <li class="nav-item {{ request()->routeIs('aa') ? 'active' : '' }}">
-        <a class="nav-link" href="{{ url('/admin') }}">
+      {{--
+      <!--USUARIOS AJAX-->
+      <li class="nav-item {{ request()->routeIs('ajaxallUsers') ? 'active' : '' }}">
+        <a class="nav-link" href="{{ url('/ajaxallUsers') }}">
           <i class="fas fa-fw fa-users"></i>
-          <span>Todos</span></a>
+          <span>Usuarios</span></a>
+      </li>
+      --}}
+      
+      <!--VISUALIZACIOND E USUARIOS NORMAL-->
+      <li class="nav-item {{ request()->routeIs('allUsers') ? 'active' : '' }}">
+        <a class="nav-link" href="{{ url('/allUsers') }}">
+          <i class="fas fa-fw fa-users"></i>
+          <span>Usuarios</span></a>
       </li>
       
+      
+      {{--
       <li class="nav-item {{ request()->routeIs('aa') ? 'active' : '' }}">
         <a class="nav-link" href="{{ url('/admin') }}">
           <i class="far fa-fw fa-user"></i>
@@ -83,7 +106,7 @@
           <i class="fas fa-fw fa-user-tie"></i>
           <span>Comite</span></a>
       </li>
-      
+      --}}
       
       
       
@@ -106,7 +129,7 @@
       <!--    </div>-->
       <!--  </div>-->
       <!--</li>-->
-
+{{--
       <!-- Divider -->
       <hr class="sidebar-divider" style="margin: 1rem 1rem 2rem;">
 
@@ -114,16 +137,16 @@
       <div class="sidebar-heading">
         Ponencias
       </div>
-
+--}}
       <!-- Nav Item - Pages Collapse Menu -->
-      <li class="nav-item {{ request()->routeIs('aa') ? 'active' : '' }}">
-        <a class="nav-link" href="{{ url('/admin') }}">
+      <li class="nav-item {{ request()->routeIs('allPonencias') ? 'active' : '' }}">
+        <a class="nav-link" href="{{ url('/allPonencias') }}">
           <i class="fas fa-fw fa-bookmark"></i>
           <span>Ponencias</span></a>
       </li>
       
-      <li class="nav-item {{ request()->routeIs('aa') ? 'active' : '' }}">
-        <a class="nav-link" href="{{ url('/admin') }}">
+      <li class="nav-item {{ request()->routeIs('allPagos') ? 'active' : '' }}">
+        <a class="nav-link" href="{{ url('/allPagos') }}">
           <i class="fas fa-fw fa-euro-sign"></i>
           <span>Pagos</span></a>
       </li>
@@ -167,7 +190,7 @@
       <li class="nav-item {{ request()->routeIs('aa') ? 'active' : '' }}">
         <a class="nav-link" href="{{ url('/') }}">
           <i class="fas fa-share fa-flip-horizontal	"></i>
-          <span>Volver a fronting</span></a>
+          <span>Volver a frontend</span></a>
       </li>
       
       <!-- Divider -->
@@ -196,18 +219,6 @@
             <i class="fa fa-bars"></i>
           </button>
 
-          <!-- Topbar Search -->
-          <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-            <div class="input-group">
-              <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
-              <div class="input-group-append">
-                <button class="btn btn-primary" type="button">
-                  <i class="fas fa-search fa-sm"></i>
-                </button>
-              </div>
-            </div>
-          </form>
-
           <!-- Topbar Navbar -->
           <ul class="navbar-nav ml-auto">
 
@@ -232,113 +243,113 @@
             </li>
 
             <!-- Nav Item - Alerts -->
-            <li class="nav-item dropdown no-arrow mx-1">
-              <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <i class="fas fa-bell fa-fw"></i>
+            <!--<li class="nav-item dropdown no-arrow mx-1">-->
+            <!--  <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">-->
+            <!--    <i class="fas fa-bell fa-fw"></i>-->
                 <!-- Counter - Alerts -->
-                <span class="badge badge-danger badge-counter">3+</span>
-              </a>
+            <!--    <span class="badge badge-danger badge-counter">3+</span>-->
+            <!--  </a>-->
               <!-- Dropdown - Alerts -->
-              <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="alertsDropdown">
-                <h6 class="dropdown-header">
-                  Alerts Center
-                </h6>
-                <a class="dropdown-item d-flex align-items-center" href="#">
-                  <div class="mr-3">
-                    <div class="icon-circle bg-primary">
-                      <i class="fas fa-file-alt text-white"></i>
-                    </div>
-                  </div>
-                  <div>
-                    <div class="small text-gray-500">December 12, 2019</div>
-                    <span class="font-weight-bold">A new monthly report is ready to download!</span>
-                  </div>
-                </a>
-                <a class="dropdown-item d-flex align-items-center" href="#">
-                  <div class="mr-3">
-                    <div class="icon-circle bg-success">
-                      <i class="fas fa-donate text-white"></i>
-                    </div>
-                  </div>
-                  <div>
-                    <div class="small text-gray-500">December 7, 2019</div>
-                    $290.29 has been deposited into your account!
-                  </div>
-                </a>
-                <a class="dropdown-item d-flex align-items-center" href="#">
-                  <div class="mr-3">
-                    <div class="icon-circle bg-warning">
-                      <i class="fas fa-exclamation-triangle text-white"></i>
-                    </div>
-                  </div>
-                  <div>
-                    <div class="small text-gray-500">December 2, 2019</div>
-                    Spending Alert: We've noticed unusually high spending for your account.
-                  </div>
-                </a>
-                <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
-              </div>
-            </li>
+            <!--  <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="alertsDropdown">-->
+            <!--    <h6 class="dropdown-header">-->
+            <!--      Alerts Center-->
+            <!--    </h6>-->
+            <!--    <a class="dropdown-item d-flex align-items-center" href="#">-->
+            <!--      <div class="mr-3">-->
+            <!--        <div class="icon-circle bg-primary">-->
+            <!--          <i class="fas fa-file-alt text-white"></i>-->
+            <!--        </div>-->
+            <!--      </div>-->
+            <!--      <div>-->
+            <!--        <div class="small text-gray-500">December 12, 2019</div>-->
+            <!--        <span class="font-weight-bold">A new monthly report is ready to download!</span>-->
+            <!--      </div>-->
+            <!--    </a>-->
+            <!--    <a class="dropdown-item d-flex align-items-center" href="#">-->
+            <!--      <div class="mr-3">-->
+            <!--        <div class="icon-circle bg-success">-->
+            <!--          <i class="fas fa-donate text-white"></i>-->
+            <!--        </div>-->
+            <!--      </div>-->
+            <!--      <div>-->
+            <!--        <div class="small text-gray-500">December 7, 2019</div>-->
+            <!--        $290.29 has been deposited into your account!-->
+            <!--      </div>-->
+            <!--    </a>-->
+            <!--    <a class="dropdown-item d-flex align-items-center" href="#">-->
+            <!--      <div class="mr-3">-->
+            <!--        <div class="icon-circle bg-warning">-->
+            <!--          <i class="fas fa-exclamation-triangle text-white"></i>-->
+            <!--        </div>-->
+            <!--      </div>-->
+            <!--      <div>-->
+            <!--        <div class="small text-gray-500">December 2, 2019</div>-->
+            <!--        Spending Alert: We've noticed unusually high spending for your account.-->
+            <!--      </div>-->
+            <!--    </a>-->
+            <!--    <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>-->
+            <!--  </div>-->
+            <!--</li>-->
 
             <!-- Nav Item - Messages -->
-            <li class="nav-item dropdown no-arrow mx-1">
-              <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <i class="fas fa-envelope fa-fw"></i>
+            <!--<li class="nav-item dropdown no-arrow mx-1">-->
+            <!--  <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">-->
+            <!--    <i class="fas fa-envelope fa-fw"></i>-->
                 <!-- Counter - Messages -->
-                <span class="badge badge-danger badge-counter">7</span>
-              </a>
+            <!--    <span class="badge badge-danger badge-counter">7</span>-->
+            <!--  </a>-->
               <!-- Dropdown - Messages -->
-              <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="messagesDropdown">
-                <h6 class="dropdown-header">
-                  Message Center
-                </h6>
-                <a class="dropdown-item d-flex align-items-center" href="#">
-                  <div class="dropdown-list-image mr-3">
-                    <img class="rounded-circle" src="https://source.unsplash.com/fn_BT9fwg_E/60x60" alt="">
-                    <div class="status-indicator bg-success"></div>
-                  </div>
-                  <div class="font-weight-bold">
-                    <div class="text-truncate">Hi there! I am wondering if you can help me with a problem I've been having.</div>
-                    <div class="small text-gray-500">Emily Fowler · 58m</div>
-                  </div>
-                </a>
-                <a class="dropdown-item d-flex align-items-center" href="#">
-                  <div class="dropdown-list-image mr-3">
-                    <img class="rounded-circle" src="https://source.unsplash.com/AU4VPcFN4LE/60x60" alt="">
-                    <div class="status-indicator"></div>
-                  </div>
-                  <div>
-                    <div class="text-truncate">I have the photos that you ordered last month, how would you like them sent to you?</div>
-                    <div class="small text-gray-500">Jae Chun · 1d</div>
-                  </div>
-                </a>
-                <a class="dropdown-item d-flex align-items-center" href="#">
-                  <div class="dropdown-list-image mr-3">
-                    <img class="rounded-circle" src="https://source.unsplash.com/CS2uCrpNzJY/60x60" alt="">
-                    <div class="status-indicator bg-warning"></div>
-                  </div>
-                  <div>
-                    <div class="text-truncate">Last month's report looks great, I am very happy with the progress so far, keep up the good work!</div>
-                    <div class="small text-gray-500">Morgan Alvarez · 2d</div>
-                  </div>
-                </a>
-                <a class="dropdown-item d-flex align-items-center" href="#">
-                  <div class="dropdown-list-image mr-3">
-                    <img class="rounded-circle" src="https://source.unsplash.com/Mv9hjnEUHR4/60x60" alt="">
-                    <div class="status-indicator bg-success"></div>
-                  </div>
-                  <div>
-                    <div class="text-truncate">Am I a good boy? The reason I ask is because someone told me that people say this to all dogs, even if they aren't good...</div>
-                    <div class="small text-gray-500">Chicken the Dog · 2w</div>
-                  </div>
-                </a>
-                <a class="dropdown-item text-center small text-gray-500" href="#">Read More Messages</a>
-              </div>
-            </li>
+            <!--  <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="messagesDropdown">-->
+            <!--    <h6 class="dropdown-header">-->
+            <!--      Message Center-->
+            <!--    </h6>-->
+            <!--    <a class="dropdown-item d-flex align-items-center" href="#">-->
+            <!--      <div class="dropdown-list-image mr-3">-->
+            <!--        <img class="rounded-circle" src="https://source.unsplash.com/fn_BT9fwg_E/60x60" alt="">-->
+            <!--        <div class="status-indicator bg-success"></div>-->
+            <!--      </div>-->
+            <!--      <div class="font-weight-bold">-->
+            <!--        <div class="text-truncate">Hi there! I am wondering if you can help me with a problem I've been having.</div>-->
+            <!--        <div class="small text-gray-500">Emily Fowler · 58m</div>-->
+            <!--      </div>-->
+            <!--    </a>-->
+            <!--    <a class="dropdown-item d-flex align-items-center" href="#">-->
+            <!--      <div class="dropdown-list-image mr-3">-->
+            <!--        <img class="rounded-circle" src="https://source.unsplash.com/AU4VPcFN4LE/60x60" alt="">-->
+            <!--        <div class="status-indicator"></div>-->
+            <!--      </div>-->
+            <!--      <div>-->
+            <!--        <div class="text-truncate">I have the photos that you ordered last month, how would you like them sent to you?</div>-->
+            <!--        <div class="small text-gray-500">Jae Chun · 1d</div>-->
+            <!--      </div>-->
+            <!--    </a>-->
+            <!--    <a class="dropdown-item d-flex align-items-center" href="#">-->
+            <!--      <div class="dropdown-list-image mr-3">-->
+            <!--        <img class="rounded-circle" src="https://source.unsplash.com/CS2uCrpNzJY/60x60" alt="">-->
+            <!--        <div class="status-indicator bg-warning"></div>-->
+            <!--      </div>-->
+            <!--      <div>-->
+            <!--        <div class="text-truncate">Last month's report looks great, I am very happy with the progress so far, keep up the good work!</div>-->
+            <!--        <div class="small text-gray-500">Morgan Alvarez · 2d</div>-->
+            <!--      </div>-->
+            <!--    </a>-->
+            <!--    <a class="dropdown-item d-flex align-items-center" href="#">-->
+            <!--      <div class="dropdown-list-image mr-3">-->
+            <!--        <img class="rounded-circle" src="https://source.unsplash.com/Mv9hjnEUHR4/60x60" alt="">-->
+            <!--        <div class="status-indicator bg-success"></div>-->
+            <!--      </div>-->
+            <!--      <div>-->
+            <!--        <div class="text-truncate">Am I a good boy? The reason I ask is because someone told me that people say this to all dogs, even if they aren't good...</div>-->
+            <!--        <div class="small text-gray-500">Chicken the Dog · 2w</div>-->
+            <!--      </div>-->
+            <!--    </a>-->
+            <!--    <a class="dropdown-item text-center small text-gray-500" href="#">Read More Messages</a>-->
+            <!--  </div>-->
+            <!--</li>-->
 
             <div class="topbar-divider d-none d-sm-block"></div>
 
-
+{{--
         <!--<div class="profile">-->
         <!--  <img src="assets/img/profile-img.png" alt="" class="img-fluid rounded-circle">-->
         <!--  <h1 class="text-light">-->
@@ -347,7 +358,7 @@
         <!--    </a>-->
         <!--  </h1>-->
         <!--</div>-->
-      
+    --}}  
 
             <!-- Nav Item - User Information -->
             <li class="nav-item dropdown no-arrow">
@@ -454,6 +465,11 @@
   </div>
 
 
+  <!--SCRIPT DATATABLES-->
+  <!--<script type="text/javascript" src="//cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>-->
+  <!--<script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>-->
+  <!--<script type="text/javascript" src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>-->
+  <!--<script type="text/javascript" src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>-->
 
   <!-- Bootstrap core JavaScript-->
   <script src="vendor/jquery/jquery.min.js"></script>
@@ -471,6 +487,151 @@
   <!-- Page level custom scripts -->
   <script src="js/demo/chart-area-demo.js"></script>
   <script src="js/demo/chart-pie-demo.js"></script>
+  
+  <!--Mensaje de alerta-->
+  <script src="{{url('frontback/borrarMensaje.js')}}"></script>
+
+
+<script>
+  $(document).on('click', 'button[type="button"]', function(event) {
+       
+      let id = this.id;
+      
+      let separador = '_separador_';
+      
+      let textoseparado = id.split(separador);
+      
+      let fraseSplit = textoseparado[1] + ' ' + textoseparado[2] + ' ' + textoseparado[3] + '' + textoseparado[4];
+      
+      let accionUsuario = textoseparado[0];
+      
+      let name_user = textoseparado[1];
+      
+      let id_user = textoseparado[4];
+      id_user = id_user.toString();
+      
+      let type_user = textoseparado[5];
+      
+      let rutaEliminar = '{{ url("destroyUser") }}';
+      let urlEliminar = rutaEliminar + '/' + id_user;
+      
+      let rutaEditar = '{{ url("editUser") }}';
+      let urlEditar = rutaEditar + '/' + id_user;
+      
+      
+      
+      // Si es eliminar
+      if(accionUsuario === 'eliminar'){
+        
+        $('#form').attr("action", urlEliminar);
+        
+        $('#aquivamifrase').text('Has seleccionado ha ' + fraseSplit);
+        
+      }else if(accionUsuario === 'editar'){
+        
+        $('#formEdit').attr("action", urlEditar);
+        
+        $('#aquivamifrase2').text('Has seleccionado ha ' + fraseSplit);
+        
+        $('#idusuv').attr('value', id_user);
+        $('#idusu').attr('value', id_user);
+        
+        $('#nameusu').attr('value', name_user);
+        
+        // $('#typeusu').attr('value', type_user);
+        $('#typeusu').val(type_user);
+        
+      }else if(accionUsuario === 'ponencia'){
+        
+        let accionPonencia = textoseparado[1];
+        
+        let id_ponencia = textoseparado[2];
+        id_ponencia = id_ponencia.toString();
+        
+        let id_user_ponencia = textoseparado[3];
+        id_user_ponencia = id_user_ponencia.toString();
+        
+        let tittle_ponencia = textoseparado[4];
+        
+        let url_ponencia = textoseparado[5];
+        
+        let fecha_ponencia = textoseparado[6];
+        
+        
+        let rutaEliminarPonencia = '{{ url("destroyPonencia") }}';
+        let urlEliminarPonencia = rutaEliminarPonencia + '/' + id_ponencia;
+        
+        let rutaEditarPonencia = '{{ url("editPonencia") }}';
+        let urlEditarPonencia = rutaEditarPonencia + '/' + id_ponencia;
+        
+        
+        let fraseEliminate = 'Has seleccionado la ponencia "' + tittle_ponencia  + '" con id: ' + id_ponencia;
+        
+        $('#aquivamifrasePEliminate').text(fraseEliminate);
+        
+        if(accionPonencia == 'eliminarPonencia'){
+          
+          $('#formPonenciasEliminate').attr("action", urlEliminarPonencia);
+          
+        }else if(accionPonencia == 'editarPonencia'){
+          
+          $('#formPonenciasEditate').attr("action", urlEditarPonencia);
+
+          $('#idponv').attr('value', id_ponencia);
+          $('#idpon').attr('value', id_ponencia);
+          $('#idponusu').attr('value', id_user_ponencia);
+          $('#namepon').attr('value', tittle_ponencia);
+          $('#urlpon').attr('value', url_ponencia);
+          $('#fechapon').attr('value', fecha_ponencia);
+        }
+        
+      }else if(accionUsuario === 'pago'){
+        
+        
+        let nameusu = textoseparado[1];
+        
+        let idusu = textoseparado[2];
+        idusu = idusu.toString();
+        
+        let tipousu = textoseparado[3];
+        
+        let pagousu = textoseparado[4];
+        
+        
+        let frasePago = 'Has seleccionado al usuario "' + nameusu  + '" con id: ' + idusu + '<br>(1 = Pagado,  0 = No pagado)';
+        
+        $('#aquivamifrasePago').html(frasePago);
+        
+        $('#pagousu').attr('value', pagousu);
+        
+        $('#idusu').attr('value', idusu);
+        
+        // let rutaEditarPago = '{{ url("editPago") }}';
+        // let urlEditarPago = rutaEditarPago + '/' + idusu;
+        
+        // $('#formPago').attr("action", urlEditarPago);
+      } 
+      
+      
+    });
+</script>
+
+{{--
+
+
+      let atributeHref = "{{ action('UsersController@destroyUser',";
+      // let atributeHref = '{{ action('UsersController@destroyUser',' + id_user + ') }}';
+      // let atributeHref = '{{ action('UsersController@destroyUser',' + id_user + ') }}';
+      //     // let desf = {{ + dest + }};
+  <!--<script>-->
+  <!--  $(document).ready( function () {-->
+  <!--    $('#users').DataTable();-->
+  <!--    searching: true;-->
+  <!--  } );-->
+  <!--</script>-->
+--}}
+
+@yield('script')
 
 </body>
 
